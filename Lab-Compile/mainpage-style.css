@@ -1,10 +1,5 @@
 body {
-	background-image: url("https://c4.wallpaperflare.com/wallpaper/280/716/905/sun-flower-yellow-flowers-grass-wallpaper-preview.jpg");
-	background-size: cover;
-	height: 1000px;   
-	background-position: center;
-	background-repeat: no-repeat;
-	margin: 0px;
+	background-color: #FFFFE5;
 }
 
 h1 {
