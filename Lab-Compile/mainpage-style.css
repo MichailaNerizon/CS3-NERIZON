@@ -25,6 +25,7 @@ h1 {
 	margin: 50px 75px 10px 118px;
 	color: black;	
 	text-decoration: none;
+	float: left;
 }
 
 #LE2 {
@@ -36,6 +37,7 @@ h1 {
 	margin: 50px 75px 10px 75px;
 	color: black;	
 	text-decoration: none;
+	float: left;
 }
 
 #LE3 {
@@ -47,6 +49,7 @@ h1 {
 	margin: 50px 75px 10px 75px;
 	color: black;	
 	text-decoration: none;
+	float: left;
 }
 
 #LE4 {
@@ -58,6 +61,7 @@ h1 {
 	margin: 50px 118px 10px 75px;
 	color: black;	
 	text-decoration: none;
+	float: left;
 }
 
 h4 {
