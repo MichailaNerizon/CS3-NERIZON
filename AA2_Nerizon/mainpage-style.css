@@ -26,6 +26,8 @@
 		color: black;	
 		text-decoration: none;
 		position: relative;
+		left: 15%; 
+		transform: translateX(-15%);
 	}
 
 	#LE2 {
@@ -62,6 +64,8 @@
 		color: black;	
 		text-decoration: none;
 		position: relative;
+		right: 15%; 
+		transform: translateY(-15%);
 	}
 
 	h4 {
