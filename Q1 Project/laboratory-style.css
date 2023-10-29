@@ -1,0 +1,388 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	background-color: #FFE4D6;
+}
+
+#header {
+	padding: 10px;
+	background-color: #d94d62;
+}
+
+#logo {
+	float: left;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+	
+#header-name {
+	font-size: 50px;
+	margin: 0px;
+	color: #FFE4D6;
+	text-shadow: 2px 2px #ff6667;
+}
+
+#menu {
+	display: flex;
+	background-color: #FACBEA;
+	justify-content: center;
+	flex-direction: row;
+}
+
+#menu-background {
+	background-color: #ff7273;
+	padding: 1px;
+}
+
+#tagline {
+	text-indent: 75px;
+	text-shadow: 1px 1px #d69a91;
+}
+
+#link {
+	margin-left: 75px;
+}
+
+.dropdown-content {
+ 	display: none;
+  	position: absolute;
+  	background-color: #f9f9f9;
+  	min-width: 250px;
+ 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  	padding: 10px 10px;
+  	z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  	display: block;
+}
+
+.content-right {
+	width: 30%;
+	padding: 20px
+	display: flex;
+	flex-direction: column;
+	background-color: #ff7273;
+}
+
+.content-right div {
+	text-align: left;
+	padding: 20px;
+	border: 1px solid #d94d62;
+	width: 350px;
+	text-indent: 100px;
+}
+
+.content-image {
+	float: right;
+	padding: 10px;
+}
+
+#content {
+	margin: 0px 25px 0px 25px;
+}
+
+.content-left p {
+	text-align: justify;
+}
+
+#home {
+	color: black;
+	text-decoration: none;
+}
+
+#laboratory {
+	margin-left: 25px;
+	margin-top: 30px;
+}
+
+.lab1 {
+	padding: 25px;
+}
+
+#meddropper {
+	float: left;
+	margin-top: 40px;
+	margin-left: 25px;
+	margin-right: 25px;
+}
+	
+.meddropper {
+	margin-top: 70px;
+}
+
+.lab2 {
+	padding: 25px;
+}
+
+#thermometer {
+	float: left;
+	margin-top: 40px;
+	margin-left: 25px;
+	margin-right: 25px;
+}
+	
+.thermometer {
+	margin-top: 70px;
+}
+
+.lab3 {
+	padding: 25px;
+}
+
+#pipette {
+	float: left;
+	margin-top: 40px;
+	margin-left: 25px;
+	margin-right: 25px;
+}
+	
+.pipette {
+	margin-top: 70px;
+}
+
+.lab4 {
+	padding: 25px;
+}
+
+#forcep {
+	float: left;
+	margin-top: 40px;
+	margin-left: 25px;
+	margin-right: 25px;
+}
+	
+.forcep {
+	margin-top: 70px;
+}
+
+.lab5 {
+	padding: 25px;
+}
+
+#testtubeholder {
+	float: left;
+	margin-top: 40px;
+	margin-left: 25px;
+	margin-right: 25px;
+}
+	
+.testtubeholder {
+	margin-top: 70px;
+}
+
+.lab6 {
+	padding: 25px;
+}
+
+#beakertong {
+	float: left;
+	margin-top: 40px;
+	margin-left: 25px;
+	margin-right: 25px;
+}
+	
+.beakertong {
+	margin-top: 70px;
+}
+
+.lab7 {
+	padding: 25px;
+}
+
+#beaker {
+	float: left;
+	margin-top: 40px;
+	margin-left: 25px;
+	margin-right: 25px;
+}
+	
+.beaker {
+	margin-top: 70px;
+}
+
+.lab8 {
+	padding: 25px;
+}
+
+#volumetricflask {
+	float: left;
+	margin-top: 40px;
+	margin-left: 25px;
+	margin-right: 25px;
+}
+	
+.volumetricflask {
+	margin-top: 70px;
+}
+
+.lab9 {
+	padding: 25px;
+}
+
+#graduatedcylinder {
+	float: left;
+	margin-top: 40px;
+	margin-left: 25px;
+	margin-right: 25px;
+}
+	
+.graduatedcylinder {
+	margin-top: 70px;
+}
+
+.lab10 {
+	padding: 25px;
+}
+
+#erlenmeyer {
+	float: left;
+	margin-top: 40px;
+	margin-left: 25px;
+	margin-right: 25px;
+}
+	
+.erlenmeyer {
+	margin-top: 70px;
+}
+
+.lab11 {
+	padding: 25px;
+}
+
+#alcohollamp {
+	float: left;
+	margin-top: 40px;
+	margin-left: 25px;
+	margin-right: 25px;
+}
+	
+.alcohollamp {
+	margin-top: 70px;
+}
+
+.lab12 {
+	padding: 25px;
+}
+
+#bunsenburner {
+	float: left;
+	margin-top: 40px;
+	margin-left: 25px;
+	margin-right: 25px;
+}
+	
+.bunsenburner {
+	margin-top: 70px;
+}
+
+.lab13 {
+	padding: 25px;
+}
+
+#funnel {
+	float: left;
+	margin-top: 40px;
+	margin-left: 25px;
+	margin-right: 25px;
+}
+	
+.funnel {
+	margin-top: 70px;
+}
+
+.lab14 {
+	padding: 25px;
+}
+
+#testtube {
+	float: left;
+	margin-top: 40px;
+	margin-left: 25px;
+	margin-right: 25px;
+}
+	
+.testtube {
+	margin-top: 50px;
+}
+
+#safety {
+	margin-left: 25px;
+	margin-top: 30px;
+}
+
+.protocol1 {
+	background-color: #ff7273;
+	margin-top: 40px;
+	margin-left: 40px;
+	margin-right: 150px;
+	padding: 5px;
+}
+
+.protocol2 {
+	background-color: #ff9fa0;
+	margin-top: 40px;
+	margin-left: 40px;
+	margin-right: 150px;
+	padding: 5px;
+}
+
+.protocol3 {
+	background-color: #ff7273;
+	margin-top: 40px;
+	margin-left: 40px;
+	margin-right: 150px;
+	padding: 5px;
+}
+
+.protocol4 {
+	background-color: #ff9fa0;
+	margin-top: 40px;
+	margin-left: 40px;
+	margin-right: 150px;
+	padding: 5px;
+}
+
+.protocol5 {
+	background-color: #ff7273;
+	margin-top: 40px;
+	margin-left: 40px;
+	margin-right: 150px;
+	padding: 5px;
+}
+
+.protocol6 {
+	background-color: #ff9fa0;
+	margin-top: 40px;
+	margin-left: 40px;
+	margin-right: 150px;
+	padding: 5px;
+}
+
+.protocol7 {
+	background-color: #ff7273;
+	margin-top: 40px;
+	margin-left: 40px;
+	margin-right: 150px;
+	margin-bottom: 40px;
+	padding: 5px;
+}
+
+#back {
+	background-color: #ff7273;
+	width: 100px;
+	margin-left: 40px;
+	color: black;
+	text-decoration: none;
+	padding: 3px;
+}
+
+#footer {
+	background-color: #d94d62;
+	margin-top: 50px;
+	text-indent: 30px;
+	padding: 5px;
+}
