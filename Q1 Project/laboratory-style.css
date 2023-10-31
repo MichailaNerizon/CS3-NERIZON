@@ -23,6 +23,7 @@ body {
 	margin: 0px;
 	color: #FFE4D6;
 	text-shadow: 2px 2px #ff6667;
+	font-family: Times New Roman;
 }
 
 #menu {
@@ -40,6 +41,7 @@ body {
 #tagline {
 	text-indent: 75px;
 	text-shadow: 1px 1px #d69a91;
+	font-family: Papyrus;
 }
 
 #link {
