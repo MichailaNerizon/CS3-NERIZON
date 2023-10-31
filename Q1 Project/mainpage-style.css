@@ -40,6 +40,7 @@ body {
 #tagline {
 	text-indent: 75px;
 	text-shadow: 1px 1px #d69a91;
+	position: fixed;
 }
 
 #link {		
