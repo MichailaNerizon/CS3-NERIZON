@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Coding Challenge 4
+        </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {
+                background-color: lightseagreen;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="title"> </h1>
+
+        <p id="para"> </p>
+
+        <button onclick="cchange()">Replace</button>
+        <p id="parap"></p>
+
+        <script>
+            document.getElementById("title").innerHTML = "Replace All";
+            document.getElementById("para").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+            function cchange(){
+                var remove = prompt("What is the character/string that needs to be replaced? ");
+                var replacement = prompt("What should it be replaced with? ");
+
+                document.getElementById("parap").innerHTML = document.getElementById("para").textContent.replace(remove,replacement);
+            }
+        </script>
+    </body>
+</html>

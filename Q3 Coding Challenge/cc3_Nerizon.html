@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Coding Challenge 3
+        </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {
+                background-color: lightseagreen;
+            }
+
+            div {
+                background-color: white;
+                width: 300px;
+                height: 30px;
+                text-align: center;
+            }
+
+            table {
+                border-collapse: collapse;
+            }
+
+            th, td {
+                border: 1px solid black;
+                padding: 10px;
+                width: 300px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="title"> </h1>
+
+       <table id="table"> 
+        <tr>
+            <th id="firstName"> First Name </th>
+            <th id="middleName"> Middle Name </th>
+            <th id="lastName"> Last Name </th>
+        </tr>
+       </table>
+       <button onclick="addName()">Add Name</button>
+        <script>
+            document.getElementById("title").innerHTML = "Name List";
+            function addName(){
+                var fullName = prompt("Enter your name (First Name, Middle Name, Last Name): ");
+                var nameParts = fullName.split(",");
+                document.getElementById("firstName").innerHTML = nameParts[0];
+                document.getElementById("middleName").innerHTML = nameParts[1];
+                document.getElementById("lastName").innerHTML = nameParts[2];
+            }
+        </script>
+    </body>
+</html>

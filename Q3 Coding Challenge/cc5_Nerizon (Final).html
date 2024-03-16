@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Coding Challenge 5
+        </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {
+                background-color: lightseagreen;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="title"> </h1>
+
+        <button onclick="flames()">Match Names</button>
+        <h3 id="name"></h3>
+
+        <h4 id="desc"> </h4>
+        <h3 id="result"></h3>
+
+
+        <script>
+            document.getElementById("title").innerHTML = "Modified FLAMES";
+            document.getElementById("desc").innerHTML = "FLAMES Result: ";
+            
+            function flames(){
+                var name1 = prompt("Enter your name: ");
+                var name2 = prompt("Enter the name of your crush: ");
+
+                document.getElementById("name").innerHTML = name1 + " and " + name2;
+
+                var x = name1.trim();
+                var y = name2.trim();
+
+                var length = x.length + y.length;
+
+                if (length % 6 == 0){
+                    document.getElementById("result").innerHTML = "Sweethearts";
+                } else if (length % 6 == 1 || length == 1){
+                    document.getElementById("result").innerHTML = "Friends";
+                } else if (length % 6 == 2 || length == 2){
+                    document.getElementById("result").innerHTML = "Lovers";
+                } else if (length % 6 == 3 || length == 3){
+                    document.getElementById("result").innerHTML = "Acquaintances";
+                } else if (length % 6 == 4 || length == 4){
+                    document.getElementById("result").innerHTML = "Marriage";
+                } else if (length % 6 == 5 || length == 5){
+                    document.getElementById("result").innerHTML = "Enemies";
+                } else if (length == 0){
+                    document.getElementById("result").innerHTML = "Special Characters are not counted!";
+                }
+            }
+        </script>
+    </body>
+</html>
