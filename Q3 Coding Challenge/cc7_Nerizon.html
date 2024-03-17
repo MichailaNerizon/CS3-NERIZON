@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>One Time Password </title>
+        <style>
+        	body {background: lightblue; 
+            	text-align: center;
+            	font-family: arial;
+                color: navy;
+            }
+            button {padding: 10px; background:violet }
+            a {font-size: 0.5em; color: maroon}
+        </style>
+	</head>
+
+	<body onload="otpGenerator()">
+	<h1 id="title"> </h1>
+	<h2> Current OTP: <span id="otp"> _ _ _ _ _ _ </span> <a onclick="otpnew()" href=""> New OTP </a></h2>
+    <button onclick="otpChecker()"> Enter the OTP as shown above </button>
+	
+	<script>
+        document.getElementById("title").innerHTML = "Final Verification Step";
+
+		function otpGenerator(){
+			var x = Math.floor(Math.random() * 1000000) + 1;
+			document.getElementById("otp").innerHTML = x;
+		}
+
+		function otpnew(){
+			var x = Math.floor(Math.random() * 1000000) + 1;
+			document.getElementById("otp").innerHTML = x;
+		}
+
+		function otpChecker(){
+			var otp = prompt("Enter the OTP shown in the screen: ");
+			var otpDisplayed = document.getElementById("otp").innerText;
+			if (otp === otpDisplayed){
+				window.open("https://michailanerizon.github.io/CS3-NERIZON/Q3%20Coding%20Challenge/Q3-Project_Nerizon.html");
+			} else {
+				alert("The OTP you entered is not correct!");
+				otpnew();
+			}
+		}
+    </script>
+
+</body>
+</html>
