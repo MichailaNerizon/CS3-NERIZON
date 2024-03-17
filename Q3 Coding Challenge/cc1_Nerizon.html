@@ -26,6 +26,7 @@
 		color: black;
 		text-decoration: none;
 		padding: 3px;
+		text-align: center;
 	    }
         </style>
     </head>
@@ -44,22 +45,22 @@
 	<a id="home" href="https://michailanerizon.github.io/CS3-NERIZON/Q3%20Coding%20Challenge/Q3-Project_Nerizon.html"> HOME </a>
 
         <script>
-			document.getElementById("title").innerHTML = "SRC Honesty Store";
-			document.getElementById("desc").innerHTML = "The total payment is: ";
-			document.getElementById("total").innerHTML = "0";
+	    document.getElementById("title").innerHTML = "SRC Honesty Store";
+	    document.getElementById("desc").innerHTML = "The total payment is: ";
+	    document.getElementById("total").innerHTML = "0";
 
             let total = 0;
 
             //get the total payment and display in h3.
             function totalP(price) {
-				total = total + price;
-				document.getElementById("total").innerHTML = total;
+		total = total + price;
+		document.getElementById("total").innerHTML = total;
             }
             
             //clears the total payment and display 0 in h3.
             function clearP(){
-				total = 0;
-				document.getElementById("total").innerHTML = total;
+		total = 0;
+		document.getElementById("total").innerHTML = total;
             }
         </script>
 
