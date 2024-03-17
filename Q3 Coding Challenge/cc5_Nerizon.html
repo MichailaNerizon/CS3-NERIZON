@@ -45,10 +45,10 @@
 
                 document.getElementById("name").innerHTML = name1 + " and " + name2;
 
-                var x = name1.trim();
-                var y = name2.trim();
+                var x = (name1.match(/[^A-Za-z]/g) || []);
+                var y = (name2.match(/[^A-Za-z]/g) || []);
 
-                var length = x.length + y.length;
+                var length = (name1.length - x.length) + (name2.length - y.length);
 
                 if (length % 6 == 0){
                     document.getElementById("result").innerHTML = "Sweethearts";
