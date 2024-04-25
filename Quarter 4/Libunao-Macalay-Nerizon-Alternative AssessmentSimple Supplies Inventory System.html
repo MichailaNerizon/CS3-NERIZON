@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Alternative Assessment: Simple Supplies Inventory System </title>
+	<link rel="stylesheet" href="stylesheet.css">
+    <style>
+        th, tr, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+
+        body{
+            background-image: url("Inventory.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-family: serif;
+            overflow: auto;
+        }
+
+        table{
+            background-color: #bba37e;
+            color: #80471C;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 320px;
+            width: 70%;
+        }
+
+        button{
+	        background-color: #bba37e;
+	        font-family: serif;
+        }
+
+        div{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 350px;
+            width: 100%;
+            padding: 14px 28p;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div>
+    <button onclick="addItem()">Add an Item</button>
+    <button onclick="addNoOfItem()">Add Number of Item</button>
+    <button onclick="subNoOfItem()">Subtract Number of Item</button>
+    <button onclick="removeItem()">Remove an Item</button>
+	</div>
+    <table id="inventoryTable">
+        <tr>
+            <th>Item Name</th>
+            <th>No. of Items</th>
+        </tr>
+    </table>
+    <script>
+        var supply = [{itemName: "notebook", noOfItem: 5}];
+        function addItem(){
+            var name = prompt("Name of the Item: ");
+            do {
+                var num = parseInt(prompt("No. of Item: "));
+            } while (num<0);
+            var existingItem = supply.find(item => item.itemName === name.toLowerCase());
+            if(existingItem){
+                console.log("This item is already available in the inventory. Try adding the number of item instead.");
+            } else {
+                supply.push({itemName: name, noOfItem: num});
+                displayItems();                
+            }
+        }
+
+        function addNoOfItem(){
+            var name = prompt("Name of the Item: ");
+            do {
+                var num = parseInt(prompt("No. of Item to Add: "));
+            } while (num<0);
+            var itemIndex = supply.findIndex(item => item.itemName === name.toLowerCase());
+            if (itemIndex !== -1) {
+                supply[itemIndex].noOfItem += num;
+                displayItems();
+            } else {
+                console.log("Item not found in inventory.");
+            }
+        }
+        
+        function subNoOfItem(){
+            var name = prompt("Name of the Item: ");
+            do {
+                var num = parseInt(prompt("No. of Item to Subtract: "));
+            } while (num<0);
+            var itemIndex = supply.findIndex(item => item.itemName === name.toLowerCase());
+            if (itemIndex !== -1) {
+                if (supply[itemIndex].noOfItem >= num){
+                    supply[itemIndex].noOfItem -= num;
+                    displayItems();
+                } else {
+                    console.log("Cannot subtract more items than available.");
+                }
+            } else {
+                console.log("Item not found in inventory.");
+            }
+        }
+
+        function removeItem() {
+            var name = prompt("Name of the Item to remove: ");
+            var itemIndex = supply.findIndex(item => item.itemName.toLowerCase() === name.toLowerCase());
+            if (itemIndex !== -1) {
+                supply.splice(itemIndex, 1);
+                displayItems();
+            } else {
+                console.log("Item not found in inventory.");
+            }
+        }
+
+        function displayItems() {
+            var table = document.getElementById("inventoryTable");
+            table.innerHTML = "<tr><th>Item Name</th><th>No. of Items</th></tr>";
+            supply.forEach(item => {
+                var row = table.insertRow();
+                var nameCell = row.insertCell(0);
+                var numCell = row.insertCell(1);
+                nameCell.textContent = item.itemName.toLowerCase();
+                numCell.textContent = item.noOfItem;
+            });
+        }
+
+        displayItems();
+    </script>
+
+</body>
+</html>
