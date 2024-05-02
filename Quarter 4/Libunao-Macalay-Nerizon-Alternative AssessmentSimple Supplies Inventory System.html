@@ -61,11 +61,11 @@
     <script>
         var supply = [{itemName: "notebook", noOfItem: 5}];
         function addItem(){
-            var name = prompt("Name of the Item: ");
+            var name = prompt("Name of the Item: ").toLowerCase();
             do {
                 var num = parseInt(prompt("No. of Item: "));
             } while (num<0);
-            var existingItem = supply.find(item => item.itemName === name.toLowerCase());
+            var existingItem = supply.find(item => item.itemName === name);
             if(existingItem){
                 console.log("This item is already available in the inventory. Try adding the number of item instead.");
             } else {
@@ -75,11 +75,11 @@
         }
 
         function addNoOfItem(){
-            var name = prompt("Name of the Item: ");
+            var name = prompt("Name of the Item: ").toLowerCase();
             do {
                 var num = parseInt(prompt("No. of Item to Add: "));
             } while (num<0);
-            var itemIndex = supply.findIndex(item => item.itemName === name.toLowerCase());
+            var itemIndex = supply.findIndex(item => item.itemName === name);
             if (itemIndex !== -1) {
                 supply[itemIndex].noOfItem += num;
                 displayItems();
@@ -89,11 +89,11 @@
         }
         
         function subNoOfItem(){
-            var name = prompt("Name of the Item: ");
+            var name = prompt("Name of the Item: ").toLowerCase();
             do {
                 var num = parseInt(prompt("No. of Item to Subtract: "));
             } while (num<0);
-            var itemIndex = supply.findIndex(item => item.itemName === name.toLowerCase());
+            var itemIndex = supply.findIndex(item => item.itemName === name);
             if (itemIndex !== -1) {
                 if (supply[itemIndex].noOfItem >= num){
                     supply[itemIndex].noOfItem -= num;
@@ -107,8 +107,8 @@
         }
 
         function removeItem() {
-            var name = prompt("Name of the Item to remove: ");
-            var itemIndex = supply.findIndex(item => item.itemName.toLowerCase() === name.toLowerCase());
+            var name = prompt("Name of the Item to remove: ").toLowerCase();
+            var itemIndex = supply.findIndex(item => item.itemName.toLowerCase() === name);
             if (itemIndex !== -1) {
                 supply.splice(itemIndex, 1);
                 displayItems();
@@ -124,7 +124,7 @@
                 var row = table.insertRow();
                 var nameCell = row.insertCell(0);
                 var numCell = row.insertCell(1);
-                nameCell.textContent = item.itemName.toLowerCase();
+                nameCell.textContent = item.itemName;
                 numCell.textContent = item.noOfItem;
             });
         }
