@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AA2: Sign-up Form</title>
+    <style>
+        body {
+            background-image: url("background.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        form {
+            width: 50%;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"], 
+        textarea,
+        select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 5px 0;
+            border: 2px solid transparent;
+            border-radius: 5px;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        input[type="email"]:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #0f0;
+        }
+
+        input[type="submit"],
+        input[type="reset"] {
+            width: calc(50% - 5px);
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        input[type="submit"]:hover,
+        input[type="reset"]:hover {
+            background-color: #555;
+        }
+
+        output {
+            display: block;
+            margin: 20px auto;
+            padding: 20px;
+            width: 50%;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            font-size: 18px;
+            color: #333;
+        }
+
+        .error {
+            border-color: red !important;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sign-Up Form</h1>
+    <form id="signup-form">
+        <fieldset>
+            <legend>User Information</legend>
+
+            <input type="text" id="name" placeholder="Name" required onblur="validateInput(this)" onfocus="resetBorderColor(this)">
+
+            <input type="text" id="username" placeholder="Username" onblur="validateInput(this)" onfocus="resetBorderColor(this)">
+
+            <select id="gender" required onblur="validateInput(this)" onfocus="resetBorderColor(this)">
+                <option value="" disabled selected>Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="others">Prefer not to mention</option>
+            </select>
+
+            <input type="password" id="password" placeholder="Password" required onblur="validateInput(this)" onfocus="resetBorderColor(this)">
+
+            <input type="email" id="email" placeholder="Email Address" required onblur="validateInput(this)" onfocus="resetBorderColor(this)">
+
+            <input type="text" id="address" placeholder="Address" required onblur="validateInput(this)" onfocus="resetBorderColor(this)">
+
+            <textarea id="interest" placeholder="Interests" required onblur="validateInput(this)" onfocus="resetBorderColor(this)"></textarea>
+        </fieldset>
+
+        <input type="submit" value="Submit Form">
+        <input type="reset" value="Reset">
+    </form>
+
+    <output id="output"></output>
+
+    <script>
+        const form = document.getElementById("signup-form");
+        const output = document.getElementById("output");
+        const inputs = form.querySelectorAll("input, textarea, select");
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            let formData = {};
+            let validForm = true;
+            inputs.forEach(input => {
+                formData[input.id] = input.value.trim();
+                if (formData[input.id] === '' || (input.getAttribute('type') === 'email' && !validEmail(formData[input.id]))) {
+                    input.classList.add('error');
+                    validForm = false;
+                } else {
+                    input.classList.remove('error');
+                }
+            });
+            if (validForm) {
+                displayFormData(formData);
+            }
+        });
+
+        function displayFormData(formData) {
+            let outputHTML = '';
+            const keys = ["name", "username", "gender", "password", "email", "address", "interest"];
+            keys.forEach(key => {
+                if (formData[key] !== undefined) {
+                    outputHTML += `<p><strong>${key.charAt(0).toUpperCase() + key.slice(1)}:</strong> ${formData[key]}</p>`;
+                }
+            });
+            output.innerHTML = outputHTML;
+        }
+
+        document.querySelector('input[type="reset"]').addEventListener('click', function() {
+            form.reset();
+            output.innerHTML = '';
+            inputs.forEach(input => {
+                input.classList.remove('error');
+            });
+        });
+
+        function validateInput(input) {
+            if (input.value.trim() === '') {
+                input.classList.add('error');
+            } else {
+                input.classList.remove('error');
+            }
+        }
+
+        function resetBorderColor(input) {
+            if (input.value.trim() === '') {
+                input.style.borderColor = 'green';
+            } else {
+                input.style.borderColor = '#0f0';
+            }
+        }
+
+        function validEmail(email){
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailPattern.test(email);
+        }
+    </script>
+    
+</body>
+</html>
