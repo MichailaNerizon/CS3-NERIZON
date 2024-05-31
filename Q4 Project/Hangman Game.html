@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman Game by Blaza, Labao, Libunao, Nerizon, Ramos</title>
+    <style>
+        @keyframes correct-guess {
+            0% {background-color: #A183D4;}
+            50% {background-color: #C6AEEB;}
+            100% {background-color: #A183D4;}
+        }
+
+        @keyframes incorrect-guess {
+            0% {background-color: #A183D4;}
+            50% {background-color: #544582;}
+            100% {background-color: #A183D4;}
+        }
+        .correct {
+            animation: correct-guess 0.5s ease-in-out;
+        }
+        .incorrect {
+            animation: incorrect-guess 0.5s ease-in-out;
+        }
+        .guessed {
+            background-color: #ccc;
+        }
+        body {
+            background-color: #A183D4;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #544582;
+        }
+
+        button {
+            background-color: #544582;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #383366;
+        }
+
+        #display {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        #display li {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            background-color: #C6AEEB;
+            color: #544582;
+            margin: 0 5px;
+            font-size: 20px;
+            border-radius: 5px;
+            border: 1px solid #544582;
+        }
+
+        #keyboard {
+            margin-top: 20px;
+        }
+
+        #keyboard button {
+            background-color: #A183D4;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        #keyboard button:hover {
+            background-color: #383366;
+        }
+
+        .keyboard button.guessed {
+            background-color: #ccc; 
+        }
+        .game-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+        @keyframes fadeOut {
+            from {opacity: 1;}
+            to {opacity: 0;}
+        }
+        .game-modal.show {
+            display: block;
+            animation: fadeIn 0.5s forwards;
+        }
+        .game-modal.hide {
+            animation: fadeOut 0.5s forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-modal">
+        <div id="content" class="content">
+            <h4>Game Over!</h4>
+            <p>The correct word is <b id="correct-word"></b>.</p>
+            <button id="play-again" class="play-again">Play Again</button>
+        </div>
+    </div>
+
+    <div id="container">
+        <h1>Hangman Game</h1>
+        <div id="hangman-box" class="hangman-box">
+            <img src="hangman.jpg"> </img>
+        </div>
+        <div id="game-box" class="game-box">
+            <ul id="display" class="word-display"></ul>
+            <h4 id="hint" class="hint-text"><b>Hint:</b> <span></span></h4>
+            <h4 id="incorrect-guess" class="guesses-text"><b>Incorrect Guesses:</b> <span>0 / 6</span></h4>
+            <div id="keyboard" class="keyboard"></div>
+        </div>
+    </div>
+
+    <script>
+        const wordList = [
+        {
+            word: "elephant",
+            hint: "Large mammal with a trunk."
+        },
+
+        {
+            word: "mountain",
+            hint: "Tall natural elevation of the earth's surface."
+        },
+
+        {
+            word: "piano",
+            hint: "Musical instrument with keys."
+        },
+
+        {
+            word: "library",
+            hint: "Place to borrow books."
+        },
+
+        {
+            word: "rainbow",
+            hint: "Colorful arc in the sky after rain."
+        },
+
+        {
+            word: "galaxy",
+            hint: "Large system of stars."
+        },
+
+        {
+            word: "penguin",
+            hint: "Flightless bird in Antarctica."
+        },
+
+        {
+            word: "tornado",
+            hint: "Powerful rotating windstorm."
+        },
+
+        {
+            word: "chocolate",
+            hint: "Sweet treat made from cocoa."
+        },
+
+        {
+            word: "volcano",
+            hint: "Mountain that erupts lava."
+        },
+
+        {
+            word: "oxygen",
+            hint: "Essential gas for breathing."
+        },
+
+        {
+            word: "diamond",
+            hint: "Precious gemstone, hardest known natural material."
+        },
+
+        {
+            word: "sphinx",
+            hint: "Mythical creature with a lion's body and a human head."
+        },
+
+        {
+            word: "jungle",
+            hint: "Dense forest in tropical regions."
+        },
+
+        {
+            word: "kangaroo",
+            hint: "Marsupial native to Australia."
+        },
+
+        {
+            word: "carousel",
+            hint: "Amusement ride with rotating seats."
+        },
+
+        {
+            word: "microscope",
+            hint: "Tool to view tiny objects."
+        },
+
+        {
+            word: "pharaoh",
+            hint: "Ancient Egyptian ruler."
+        },
+
+        {
+            word: "zebra",
+            hint: "Animal with black and white stripes."
+        },
+
+        {
+            word: "cactus",
+            hint: "Spiky desert plant."
+        },
+
+        {
+            word: "hurricane",
+            hint: "Tropical cyclone with strong winds."
+        },
+
+        {
+            word: "meteorite",
+            hint: "Space rock that reaches Earth's surface."
+        },
+
+        {
+            word: "violin",
+            hint: "String instrument played with a bow."
+        },
+
+        {
+            word: "palace",
+            hint: "Large, stately home, often for royalty."
+        },
+
+        {
+            word: "astronaut",
+            hint: "Space Traveler"
+        },
+
+        {
+            word: "glacier",
+            hint: "Large, slow-moving mass of ice."
+        },
+
+        {
+            word: "origami",
+            hint: "Japanese art of paper folding."
+        },
+
+        {
+            word: "telescope",
+            hint: "Instrument to observe distant objects."
+        },
+
+        {
+            word: "monsoon",
+            hint: "Seasonal heavy rain in South Asia."
+        },
+
+        {
+            word: "labyrinth",
+            hint: "Complex maze"
+        },
+        ];
+
+        const wordDisplay = document.querySelector("#display");
+        const guessesText = document.querySelector("#incorrect-guess span");
+        const keyboardDiv = document.querySelector("#keyboard");
+        const hangmanImage = document.querySelector("#hangman-box img");
+        const gameModal = document.querySelector(".game-modal");
+        const playAgainBtn = gameModal.querySelector("#play-again");
+        const correctWordDisplay = gameModal.querySelector("#correct-word");
+
+        let currentWord, correctLetters, wrongGuessCount, guessedLetters;
+        const maxGuesses = 6;
+
+        const resetGame = () => {
+            correctLetters = [];
+            wrongGuessCount = 0;
+            guessedLetters = new Set();
+            hangmanImage.src = "hangman.jpg";
+            guessesText.innerText = `${wrongGuessCount} / ${maxGuesses}`;
+            wordDisplay.innerHTML = currentWord.split("").map(() => `<li class="letter"></li>`).join("");
+            keyboardDiv.querySelectorAll("button").forEach(btn => {
+                btn.classList.remove("guessed");
+                btn.disabled = false;
+            });
+            gameModal.classList.remove("show");
+        }
+
+        const getRandomWord = () => {
+            const { word, hint } = wordList[Math.floor(Math.random() * wordList.length)];
+            currentWord = word;
+            document.querySelector("#hint span").innerText = hint;
+            resetGame();
+        }
+
+        const gameOver = (isVictory) => {
+            const modalText = isVictory ? `Congrats!` : 'Game Over!';
+            correctWordDisplay.innerText = currentWord;
+            gameModal.querySelector("h4").innerText = modalText;
+            
+            gameModal.classList.remove("hide");
+            gameModal.classList.add("show");
+            gameModal.style.display = "block";
+        }
+
+        const initGame = (clickedLetter) => {
+            if(guessedLetters.has(clickedLetter)) return;
+            
+            guessedLetters.add(clickedLetter);
+
+            const button = keyboardDiv.querySelector(`button[data-letter="${clickedLetter}"]`);
+            if(currentWord.includes(clickedLetter)) {
+                [...currentWord].forEach((letter, index) => {
+                    if(letter === clickedLetter) {
+                        correctLetters.push(letter);
+                        const letterElement = wordDisplay.querySelectorAll("li")[index];
+                        letterElement.innerText = letter;
+                        letterElement.classList.add("guessed");
+                        letterElement.classList.add("correct");
+                        setTimeout(() => 
+                            letterElement.classList.remove("correct"), 500);
+                        }
+                        });
+                    }
+                    else {
+                wrongGuessCount++;
+                button.classList.add("incorrect");
+            }
+            guessesText.innerText = `${wrongGuessCount} / ${maxGuesses}`;
+            button.disabled = true;
+            
+            setTimeout(() => {
+                button.classList.remove("correct");
+                button.classList.remove("incorrect");
+            }, 500);
+
+            if(wrongGuessCount >= maxGuesses) return gameOver(false);
+            if(correctLetters.length === currentWord.length) return gameOver(true);
+        }
+        
+        for (let i = 65; i <= 90; i++) {
+            const button = document.createElement("button");
+            const letter = String.fromCharCode(i).toLowerCase();
+            button.innerText = letter;
+            button.setAttribute("data-letter", letter);
+            keyboardDiv.appendChild(button);
+        }
+
+        const handleKeyboardInput = (e) => {
+            const keyPressed = e.key.toLowerCase();
+            if(/[a-z]/.test(keyPressed)) initGame(keyPressed);
+        };
+        document.addEventListener("keydown", handleKeyboardInput);
+        keyboardDiv.addEventListener("click", (e) => {
+            if(e.target.tagName === "BUTTON") initGame(e.target.getAttribute("data-letter"));
+        });
+        
+        getRandomWord();
+        playAgainBtn.addEventListener("click", () => {
+            gameModal.classList.remove("show");
+            gameModal.classList.add("hide");
+            setTimeout(() => {
+                getRandomWord();
+                gameModal.classList.remove("hide");
+                }, 500);
+        });
+    </script>
+</body>
+</html>
